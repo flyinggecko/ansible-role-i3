@@ -1,1 +1,1 @@
-exec_always --no-startup-id xrandr --output HDMI-0 --mode 1680x1050 --right-of VGA-1 --output VGA-1 --mode 1440x900 --primary
+exec_always --no-startup-id xrandr --output HDMI-0 --mode 1680x1050 --right-of VGA-0 --output VGA-0 --mode 1440x900 --primary
