@@ -1,0 +1,6 @@
+---
+# defaults file for i3
+# i3_state: "{{ i3.state | default('present') }}" # TODO: make this work
+
+i3_user_state: "{{ item.state | default('present') }}"
+i3_user_config_multi: "{{ item.i3config_multi | default('no') }}"

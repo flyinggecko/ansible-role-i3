@@ -1,0 +1,74 @@
+---
+
+- name: make sure ~/.i3 exists
+  file:
+    dest: "/home/julian/.i3"
+    state: "directory"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: "0750"
+  with_items:
+    i3_user
+  when:
+    i3_user_state == "present"
+- name: make sure ~/.i3 is removed
+  file:
+    dest: "/home/{{ item.name }}/.i3/"
+    state: "absent"
+  with_items:
+    i3_user
+  when:
+    i3_user_state == "absent"
+
+- name: copy i3 config when i3config_multi
+  copy:
+    src: "{{ item.1 }}"
+    dest: "/home/{{ item.0.name }}/.i3/{{ item.1 }}"
+    owner: "{{ item.0.name }}"
+    group: "{{ item.0.name }}"
+    mode: "0640"
+  with_subelements:
+    - i3_user
+    - i3config
+  when:
+    item.0.i3config_multi is defined
+    and item.0.i3config_multi == "yes"
+
+- name: assemble i3 config (multiple files)
+  assemble:
+    src: "/home/{{ item.name }}/.i3/"
+    dest: "/home/{{ item.name }}/.i3/config"
+    regexp: "^i3."
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: "0640"
+  with_items:
+    i3_user
+  when:
+    i3_user_config_multi == "yes"
+
+
+- name: copy single-file i3 config
+  copy:
+    src: "{{ item.i3config.0 }}"
+    dest: "/home/{{ item.name }}/.i3/config"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: "0640"
+  with_items:
+    i3_user
+  when:
+    i3_user_config_multi == "no"
+
+
+- name: install i3status config
+  copy:
+    src: "{{ item.i3status }}"
+    dest: "/home/{{ item.name }}/.i3status.conf"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: "0640"
+  with_items:
+    i3_user
+  when:
+    i3_user_state == "present"
