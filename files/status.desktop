@@ -1,0 +1,26 @@
+general {
+  output_format = "i3bar"
+  colors = true
+  interval = 1
+}
+
+order += "ethernet eth0"
+order += "cpu_usage"
+order += "time"
+order += "volume master"
+
+ethernet eth0 {
+  format_up =  "eth0: %ip (%speed)"
+  format_down = ""
+}
+
+cpu_usage {
+  format = "cpu: %usage"
+}
+
+volume master {
+  format = "♪: %volume"
+  device = "default"
+  mixer = "Master"
+  mixer_idx = 0
+}

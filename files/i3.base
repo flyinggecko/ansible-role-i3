@@ -1,0 +1,235 @@
+set $mod Mod4
+
+# Font
+font pango:DejaVu Sans Mono 9px
+
+# border colors
+client.background #0d151d
+client.focused #9f440d #9f440d #0d151d
+client.unfocused #9f440d #0d151d #9f440d
+client.urgent #9f440d #a00404 #0d151d
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+assign [class="^Iceweasel$"] 1
+assign [class="^Chromium$"] 1
+assign [class="^Psi-plus$"] 2
+assign [class="^Pidgin$"] 2
+assign [class="^Icedove$"] 4
+assign [class="^Skype$"] 2
+
+#for_window [class="^Psi-plus$" instance="^main$"]
+
+# Tabbed as default layout
+workspace_layout tabbed
+
+# Borders
+new_window 1pixel
+new_float 1pixel
+
+# start a terminal
+#bindsym $mod+Shift+Return exec --no-startup-id urxvtcd
+bindsym $mod+Shift+Return exec --no-startup-id lxterminal
+
+# kill focused window
+bindsym $mod+Shift+c kill
+
+# scratchpad
+bindsym $mod+Shift+m move scratchpad
+bindsym $mod+m scratchpad show
+
+# Audio raise and lower and mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master playback 1310+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master playback 1310-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
+# Audio Pause/Play
+bindsym XF86AudioPlay exec --no-startup-id gmusicbrowser -ifnotrunning abort -cmd PlayPause
+bindsym XF86AudioNext exec --no-startup-id gmusicbrowser -ifnotrunning abort -cmd NextSong
+bindsym XF86AudioPrev exec --no-startup-id gmusicbrowser -ifnotrunning abort -cmd PrevSong
+
+# wifi on/off
+bindsym XF86Wlan exec --no-startup-id sudo wifi toggle
+# thunar
+bindsym $mod+Shift+n exec --no-startup-id thunar
+# internet ;)
+bindsym $mod+Shift+f exec --no-startup-id iceweasel
+#change bg
+bindsym $mod+o exec --no-startup-id find ~/Pictures/wallpaper -type f \( -name '*.jpg' -o -name '*.png' \) -print0 | shuf -n1 -z | xargs -0 feh --bg-scale
+#change bg with 2 different wallpapers for dual head stuff ;)
+bindsym $mod+Shift+o exec --no-startup-id feh --bg-scale `find ~/Pictures/wallpaper -type f \( -name '*.jpg' -o -name '*.png' \) -print0 | shuf -n1 -z` `find ~/Pictures/wallpaper -type f \( -name '*.jpg' -o -name '*.png' \) -print0 | shuf -n1 -z`
+
+# move window to right output
+bindsym $mod+x move workspace to output right
+
+# focus to output
+bindsym $mod+Shift+w focus output left
+bindsym $mod+Shift+e focus output right
+
+# start dmenu (a program launcher)
+bindsym $mod+p exec --no-startup-id dmenu_run -p 'Run command: ' -nb '#0d151d' -nf '#9f440d' -sb '#9f440d' -sf '#0d151d'
+
+# lock screen
+bindsym $mod+Shift+F12 exec xscreensaver-command -lock
+bindsym XF86ScreenSaver exec xscreensaver-command -lock
+# lock screen and suspend
+bindsym $mod+Shift+F11 exec xscreensaver-command -lock && sudo pm-suspend
+bindsym XF86Sleep exec xscreensaver-command -lock
+
+# change focus
+bindsym $mod+Shift+Tab focus left
+bindsym $mod+Tab focus right
+#bindsym $mod+l focus up
+#bindsym $mod+odiaeresis focus right
+
+# change focus to $WINDOW
+bindsym $mod+f [class="^Iceweasel$"] focus
+bindsym $mod+i [class="^Icedove$"] focus
+bindsym $mod+s [class="^Sublime_text$"] focus
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+space fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+#bindsym $mod+space layout toggle tabbed slpit
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+# bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+F1 workspace F1
+bindsym $mod+F2 workspace F2
+bindsym $mod+F3 workspace F3
+bindsym $mod+F4 workspace F4
+bindsym $mod+F5 workspace F5
+bindsym $mod+F6 workspace F6
+bindsym $mod+F7 workspace F7
+bindsym $mod+F8 workspace F8
+bindsym $mod+F9 workspace F9
+bindsym $mod+F10 workspace F10
+
+bindsym $mod+Shift+s workspace 3
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+Shift+F1 move container to workspace F1
+bindsym $mod+Shift+F2 move container to workspace F2
+bindsym $mod+Shift+F3 move container to workspace F3
+bindsym $mod+Shift+F4 move container to workspace F4
+bindsym $mod+Shift+F5 move container to workspace F5
+bindsym $mod+Shift+F6 move container to workspace F6
+bindsym $mod+Shift+F7 move container to workspace F7
+bindsym $mod+Shift+F8 move container to workspace F8
+bindsym $mod+Shift+F9 move container to workspace F9
+bindsym $mod+Shift+F10 move container to workspace F10
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+q exec "i3-nagbar -t warning -m 'EXIT?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym Left resize grow width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize shrink width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+  status_command i3status
+  tray_output primary
+  position top
+  mode hide
+  colors {
+    background #0d151d
+    statusline #e0440d
+    separator #e0440d
+    focused_workspace  #e0440d #e0440d #0d151d
+    active_workspace   #e0440d #0d151d #e0440d
+    inactive_workspace #e0440d #0d151d #e0440d
+    urgent_workspace   #e0440d #a00404 #0d151d
+  }
+}
+
+exec --no-startup-id workrave
+exec --no-startup-id keepassx
+exec --no-startup-id setxkbmap -option ctrl:nocaps
+exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper/28.jpg
+exec --no-startup-id padevchooser
+exec --no-startup-id xset -b
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
+exec --no-startup-id xset s off
+exec --no-startup-id xscreensaver -nosplash
+exec_always --no-startup-id synclient TouchpadOff=1
