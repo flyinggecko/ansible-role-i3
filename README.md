@@ -32,21 +32,24 @@ Example Playbook
 
 `some_host_var.yml`:
 
-    i3_user:
-    - name: foo
-      i3config_multi: "yes" (when only one file, this can be absent or "no")
-      i3config:
-      - i3.base
-      - i3.desktop (can also be only one file)
-      i3status: status.desktop
+```yaml
+i3_user:
+- name: foo
+  i3config_multi: "yes" (when only one file, this can be absent or "no")
+  i3config:
+  - i3.base
+  - i3.desktop (can also be only one file)
+  i3status: status.desktop
+```
 
 `some_playbook.yml`:
 
-    - hosts: with-x
-      sudo: yes
-      roles:
-      - i3
-
+```yaml
+- hosts: with-x
+  sudo: yes
+  roles:
+  - i3
+```
 License
 -------
 

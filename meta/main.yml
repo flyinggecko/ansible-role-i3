@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Julian Stiller
-  description:
+  description: Install i3 and configures it for some users.
   license: MIT
   min_ansible_version: 1.4
   platforms:
