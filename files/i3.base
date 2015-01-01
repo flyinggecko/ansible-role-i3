@@ -49,6 +49,9 @@ bindsym XF86AudioPlay exec --no-startup-id gmusicbrowser -ifnotrunning abort -cm
 bindsym XF86AudioNext exec --no-startup-id gmusicbrowser -ifnotrunning abort -cmd NextSong
 bindsym XF86AudioPrev exec --no-startup-id gmusicbrowser -ifnotrunning abort -cmd PrevSong
 
+# Toggle Touchpad
+bindsym XF86TouchpadToggle exec --no-startup-id toggle_touchpad
+
 # wifi on/off
 bindsym XF86Wlan exec --no-startup-id sudo wifi toggle
 # thunar
@@ -80,8 +83,6 @@ bindsym XF86Sleep exec xscreensaver-command -lock
 # change focus
 bindsym $mod+Shift+Tab focus left
 bindsym $mod+Tab focus right
-#bindsym $mod+l focus up
-#bindsym $mod+odiaeresis focus right
 
 # change focus to $WINDOW
 bindsym $mod+f [class="^Iceweasel$"] focus
@@ -116,17 +117,14 @@ bindsym $mod+v split v
 bindsym $mod+space fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-
-#bindsym $mod+space layout toggle tabbed slpit
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-# bindsym $mod+space focus mode_toggle
+bindsym $mod+Ctrl+Tab focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
