@@ -2,7 +2,7 @@
 
 - name: make sure ~/.i3 exists
   file:
-    dest: "/home/julian/.i3"
+    dest: "/home/{{ item.name }}/.i3"
     state: "directory"
     owner: "{{ item.name }}"
     group: "{{ item.name }}"
