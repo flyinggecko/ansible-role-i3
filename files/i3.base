@@ -223,7 +223,7 @@ bar {
 exec --no-startup-id workrave
 exec --no-startup-id keepassx
 exec --no-startup-id setxkbmap -option ctrl:nocaps
-exec --no-startup-id feh --bg-scale ~/Pictures/wallpaper/28.jpg
+exec --no-startup-id sleep 2 && feh --bg-scale ~/Pictures/wallpaper/28.jpg
 exec --no-startup-id padevchooser
 exec --no-startup-id xset -b
 exec --no-startup-id xset -dpms
