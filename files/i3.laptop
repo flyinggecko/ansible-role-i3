@@ -1,1 +1,2 @@
 exec --no-startup-id sudo bluetooth off
+exec_always --no-startup-id synclient TouchpadOff=1

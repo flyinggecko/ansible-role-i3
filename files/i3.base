@@ -30,7 +30,8 @@ new_float 1pixel
 
 # start a terminal
 #bindsym $mod+Shift+Return exec --no-startup-id urxvtcd
-bindsym $mod+Shift+Return exec --no-startup-id lxterminal
+#bindsym $mod+Shift+Return exec --no-startup-id lxterminal
+bindsym $mod+Shift+Return exec --no-startup-id terminology
 
 # kill focused window
 bindsym $mod+Shift+c kill
@@ -51,6 +52,11 @@ bindsym XF86AudioPrev exec --no-startup-id gmusicbrowser -ifnotrunning abort -cm
 
 # Toggle Touchpad
 bindsym XF86TouchpadToggle exec --no-startup-id toggle_touchpad
+
+# inc backlight
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+# dec backlight
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 # wifi on/off
 bindsym XF86Wlan exec --no-startup-id sudo wifi toggle
@@ -230,4 +236,3 @@ exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
 exec --no-startup-id xset s off
 exec --no-startup-id xscreensaver -nosplash
-exec_always --no-startup-id synclient TouchpadOff=1
