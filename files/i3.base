@@ -53,6 +53,7 @@ bindsym XF86AudioPrev exec --no-startup-id gmusicbrowser -ifnotrunning abort -cm
 # Toggle Touchpad
 bindsym XF86TouchpadToggle exec --no-startup-id toggle_touchpad
 bindsym XF86Explorer exec --no-startup-id toggle_touchpad
+bindsym XF86MyComputer exec --no-startup-id toggle_touchpad
 
 # inc backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
@@ -94,7 +95,7 @@ bindsym $mod+Tab focus right
 # change focus to $WINDOW
 bindsym $mod+f [class="^Iceweasel$"] focus
 bindsym $mod+i [class="^Icedove$"] focus
-bindsym $mod+s [class="^Sublime_text$"] focus
+bindsym $mod+s [class="^Atom$"] focus
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -229,7 +230,7 @@ bar {
 
 exec --no-startup-id workrave
 exec --no-startup-id keepassx
-exec --no-startup-id setxkbmap -option ctrl:nocaps
+exec --no-startup-id setxkbmap -option "ctrl:nocaps,compose:ralt"
 exec --no-startup-id sleep 2 && feh --bg-scale ~/Pictures/wallpaper/28.jpg
 exec --no-startup-id padevchooser
 exec --no-startup-id xset -b
