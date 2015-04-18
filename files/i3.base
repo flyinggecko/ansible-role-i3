@@ -4,10 +4,10 @@ set $mod Mod4
 font pango:DejaVu Sans Mono 9px
 
 # border colors
-client.background #0d151d
-client.focused #9f440d #9f440d #0d151d
-client.unfocused #9f440d #0d151d #9f440d
-client.urgent #9f440d #a00404 #0d151d
+client.background #002b36
+client.focused #839801 #839801 #002b36
+client.unfocused #839801 #002b36 #839801
+client.urgent #839801 #a00404 #002b36
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -79,7 +79,7 @@ bindsym $mod+Shift+w focus output left
 bindsym $mod+Shift+e focus output right
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec --no-startup-id dmenu_run -p 'Run command: ' -nb '#0d151d' -nf '#9f440d' -sb '#9f440d' -sf '#0d151d'
+bindsym $mod+p exec --no-startup-id dmenu_run -p 'Run command: ' -nb '#002b36' -nf '#839801' -sb '#839801' -sf '#002b36'
 
 # lock screen
 bindsym $mod+Shift+F12 exec xscreensaver-command -lock
@@ -218,13 +218,13 @@ bar {
   position top
   mode hide
   colors {
-    background #0d151d
-    statusline #e0440d
-    separator #e0440d
-    focused_workspace  #e0440d #e0440d #0d151d
-    active_workspace   #e0440d #0d151d #e0440d
-    inactive_workspace #e0440d #0d151d #e0440d
-    urgent_workspace   #e0440d #a00404 #0d151d
+    background #002b36
+    statusline #839801
+    separator #839801
+    focused_workspace  #839801 #839801 #002b36
+    active_workspace   #839801 #002b36 #839801
+    inactive_workspace #839801 #002b36 #839801
+    urgent_workspace   #839801 #a00404 #002b36
   }
 }
 
