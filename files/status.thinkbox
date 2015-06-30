@@ -47,27 +47,17 @@ cpu_avg_samples 2
 # Battery: ${battery_percent BAT0}%
 
 TEXT
-# [{"full_text" : " ${if_up wlan0} WLAN: ${addr wlan0} ${endif} ${if_up eth0} LAN: ${addr eth0} ${endif}", "color" : "\#0099CC" },
-# {"full_text" : " Uptime $uptime_short ", "color" : "\#0099CC" },
-# {"full_text" : " Disk use ${fs_used /} /${fs_size /} (${fs_free_perc /}% free) ", "color" : "\#0099CC" },
-# {"full_text" : " RAM ${mem} ", "color" : ${if_match ${memperc}<85} "\#0099CC" ${else} "\#ff3300" ${endif} },
-# {"full_text" : " CPU ${cpu cpu0}% (${cpu cpu1}-${cpu cpu2}-${cpu cpu3}-${cpu cpu4}) ", "color" : "\#0099CC" },
-# {"full_text" : " BAT ${battery BAT0} ${battery_time BAT0} ${battery BAT1} ${battery_time BAT1} " , "color" : ${if_match ${battery_percent}>20} "\#0099CC" ${else} "\#ff3300" ${endif} },
-# {"full_text" : " $time ", "color" : "\#0099CC" }],
-
 [
 {"full_text" : "${if_up wlan0}wlan up${endif}${if_up eth0}eth up${endif}" },
-#{"full_text" : "uptime $uptime_short" },
-{"full_text" : "/ ${fs_free /}", "color" : ${if_match ${fs_free_perc /}>10} "\#2aa198" ${else} "\#d33682" ${endif} },
-{"full_text" : "/home ${fs_free /home}", "color" : ${if_match ${fs_free_perc /home}>10} "\#2aa198" ${else} "\#d33682" ${endif} },
+{"full_text" : "/ ${fs_free /}", "color" : ${if_match ${fs_free_perc /}>10} "\#839801" ${else} "\#d33682" ${endif} },
+{"full_text" : "/home ${fs_free /home}", "color" : ${if_match ${fs_free_perc /home}>10} "\#839801" ${else} "\#d33682" ${endif} },
 {"full_text" : "cpu ${cpu cpu1}-${cpu cpu2}-${cpu cpu3}-${cpu cpu4}" },
 {"full_text" : "cpu_temp ${exec sensors | awk '/Physical id 0/ {print $4}'}" },
-#{"full_text" : "load ${loadavg 1}" },
 {"full_text" : "ram ${mem}" },
-{"full_text" : "swap ${swap}" },
-{"full_text" : "bat ${battery BAT0} ${battery_time BAT0}, "color" : ${if_match ${battery_percent}>20} "\#2aa198" ${else} "\#d33682" ${endif} },
+#{"full_text" : "swap ${swap}" },
+{"full_text" : "bat ${battery BAT0} ${battery_time BAT0}" },
 {"full_text" : "hh ${execi 1800 weather EDHI | sed -n 's/.*Temperature:.*(\(.*\))/\1/p'}" },
-{"full_text" : "♫: ${execi 30 pactl list sinks | grep "Volume: f" | cut -d " " -f6}" },
+{"full_text" : "♫: ${execi 5 pactl list sinks | grep "Volume: f" | cut -d " " -f6}" },
 {"full_text" : "$time" },
 {"full_text" : "${nodename}" }
 ],

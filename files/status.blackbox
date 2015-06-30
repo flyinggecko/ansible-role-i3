@@ -49,14 +49,14 @@ cpu_avg_samples 2
 TEXT
 [
 {"full_text" : "${if_up eth0}eth up${endif}" },
-{"full_text" : "/ ${fs_free /}", "color" : ${if_match ${fs_free_perc /}>10} "\#2aa198" ${else} "\#d33682" ${endif} },
-{"full_text" : "/home ${fs_free /home}", "color" : ${if_match ${fs_free_perc /home}>10} "\#2aa198" ${else} "\#d33682" ${endif} },
+{"full_text" : "/ ${fs_free /}", "color" : ${if_match ${fs_free_perc /}>10} "\#839801" ${else} "\#d33682" ${endif} },
+{"full_text" : "/home ${fs_free /home}", "color" : ${if_match ${fs_free_perc /home}>10} "\#839801" ${else} "\#d33682" ${endif} },
 {"full_text" : "cpu ${cpu cpu1}-${cpu cpu2}-${cpu cpu3}-${cpu cpu4}" },
 {"full_text" : "cpu_temp ${exec sensors | awk '/Physical id 0/ {print $4}'}" },
 {"full_text" : "ram ${mem}" },
-{"full_text" : "swap ${swap}" },
+#{"full_text" : "swap ${swap}" },
 {"full_text" : "hh ${execi 1800 weather EDHI | sed -n 's/.*Temperature:.*(\(.*\))/\1/p'}" },
-{"full_text" : "♫: ${execi 30 pactl list sinks | grep "Volume: f" | cut -d " " -f6}" },
+{"full_text" : "♫: ${execi 5 pactl list sinks | grep "Volume: f" | cut -d " " -f6}" },
 {"full_text" : "$time" },
 {"full_text" : "${nodename}" }
 ],
