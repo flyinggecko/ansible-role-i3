@@ -1,26 +1,62 @@
-general {
-  output_format = "i3bar"
-  colors = true
-  interval = 1
-}
+s### Conky configuration file
+## Output is printed to the console -> i3bar
+# Modified: 2015-05-25 mseed : http://www.fastlinux.eu
 
-order += "ethernet eth0"
-order += "cpu_usage"
-order += "time"
-order += "volume master"
+## Standard bar / background props:
+out_to_x no
+own_window no
+out_to_console yes
+double_buffer no
+update_interval 1.0
+total_run_times 0
+short_units no # GiB -> G etc  
 
-ethernet eth0 {
-  format_up =  "eth0: %ip (%speed)"
-  format_down = ""
-}
+## Unsure here: Set to yes if you want Conky to be forked in the background
+background no
 
-cpu_usage {
-  format = "cpu: %usage"
-}
+## How strict should if_up be when testing an interface for being up?
+## The value is one of up, link or address, to check for the interface
+## being solely up, being up and having link or being up, having link
+## and an assigned IP address. 
+if_up_strictness address
 
-volume master {
-  format = "♪: %volume"
-  device = "default"
-  mixer = "Master"
-  mixer_idx = 0
-}
+## Add spaces to keep things from moving about?  This only affects certain objects.
+## use_spacer should have an argument of left, right, or none
+use_spacer left
+
+override_utf8_locale no
+
+## number of cpu samples to average
+## set to 1 to disable averaging
+cpu_avg_samples 2
+
+## Sensors examples
+# Top Process: ${top name 1}
+# Root: {fs_used /}/${fs_size /} /home ${fs_free /home} /${fs_size /home}
+# Load: ${loadavg 1} ${loadavg 2} ${loadavg 3} 
+# Load: $loadavg
+# Swap: ${swap}/${swapmax} (${swapperc}%)
+# Processes: ${running_processes} / ${processes}
+# CPU: $cpu% 
+# HDD: $diskio_read :Read $diskio_write :Write
+# Temp: Core0: ${exec sensors | awk '/Core 0/ {print $3}'} Core1: ${exec sensors | awk '/Core 1/ {print $3}'}
+# Freq: ${freq cpu0}Mhz
+# Uptime: $uptime
+# Kernel:$kernel on $machine
+# Name: $nodename - $sysname
+# Battery: ${battery_percent BAT0}%
+
+TEXT
+[
+{"full_text" : "${if_up eth0}eth up${endif}" },
+{"full_text" : "/ ${fs_free /}", "color" : ${if_match ${fs_free_perc /}>10} "\#2aa198" ${else} "\#d33682" ${endif} },
+{"full_text" : "/home ${fs_free /home}", "color" : ${if_match ${fs_free_perc /home}>10} "\#2aa198" ${else} "\#d33682" ${endif} },
+{"full_text" : "cpu ${cpu cpu1}-${cpu cpu2}-${cpu cpu3}-${cpu cpu4}" },
+{"full_text" : "cpu_temp ${exec sensors | awk '/Physical id 0/ {print $4}'}" },
+{"full_text" : "ram ${mem}" },
+{"full_text" : "swap ${swap}" },
+{"full_text" : "hh ${execi 1800 weather EDHI | sed -n 's/.*Temperature:.*(\(.*\))/\1/p'}" },
+{"full_text" : "♫: ${execi 30 pactl list sinks | grep "Volume: f" | cut -d " " -f6}" },
+{"full_text" : "$time" },
+{"full_text" : "${nodename}" }
+],
