@@ -1,4 +1,1 @@
-exec --no-startup-id sudo bluetooth off
-exec --no-startup-id synclient TouchpadOff=1
-exec --no-startup-id synclient HorizTwoFingerScroll=1
-exec --no-startup-id syndaemon -i 0.5 -d
+exec --no-startup-id bluetooth off

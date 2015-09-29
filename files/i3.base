@@ -53,13 +53,11 @@ bindsym XF86AudioPrev exec --no-startup-id gmusicbrowser -ifnotrunning abort -cm
 
 # Toggle Touchpad
 bindsym XF86TouchpadToggle exec --no-startup-id toggle_touchpad
-bindsym XF86Explorer exec --no-startup-id toggle_touchpad
-bindsym XF86MyComputer exec --no-startup-id toggle_touchpad
 
 # inc backlight
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 # dec backlight
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 
 # wifi on/off
 bindsym XF86Wlan exec --no-startup-id sudo wifi toggle
@@ -85,10 +83,10 @@ bindsym $mod+Shift+e focus output right
 bindsym $mod+p exec --no-startup-id dmenu_run -p 'Run command: ' -nb '#002b36' -nf '#839801' -sb '#839801' -sf '#002b36'
 
 # lock screen
-bindsym $mod+Shift+F12 exec xscreensaver-command -lock
-bindsym XF86ScreenSaver exec xscreensaver-command -lock
+bindsym $mod+Shift+F12 exec xscreensaver-command -lock && sleep 1 && xset dpms force off
+bindsym XF86ScreenSaver exec xscreensaver-command -lock && sleep 1 && xset dpms force off
 # lock screen and suspend
-bindsym $mod+Shift+F11 exec xscreensaver-command -lock && sudo pm-suspend
+bindsym $mod+Shift+F11 exec xscreensaver-command -lock && systemctl suspend
 bindsym XF86Sleep exec xscreensaver-command -lock
 
 # change focus
@@ -98,7 +96,7 @@ bindsym $mod+Tab focus right
 # change focus to $WINDOW
 bindsym $mod+f [class="^Iceweasel$"] focus
 bindsym $mod+i [class="^Icedove$"] focus
-bindsym $mod+s [class="^Atom$"] focus
+bindsym $mod+s [class="^Emacs$"] focus
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -210,7 +208,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command conky-init ~/.i3status.conf
+  status_command py3status -i ~/repos/py3status_modules/
   tray_output primary
   position top
   mode hide
@@ -235,3 +233,4 @@ exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
 exec --no-startup-id xset s off
 exec --no-startup-id xscreensaver -nosplash
+exec --no-startup-id syncthing
