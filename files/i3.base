@@ -53,6 +53,11 @@ bindsym XF86AudioPrev exec --no-startup-id gmusicbrowser -ifnotrunning abort -cm
 
 # Toggle Touchpad
 bindsym XF86TouchpadToggle exec --no-startup-id toggle_touchpad
+<<<<<<< Updated upstream
+=======
+#bindsym XF86Explorer exec --no-startup-id toggle_touchpad
+#bindsym XF86MyComputer exec --no-startup-id toggle_touchpad
+>>>>>>> Stashed changes
 
 # inc backlight
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
